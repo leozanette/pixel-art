@@ -1,3 +1,5 @@
+let size = document.getElementById('board-size');
+
 
 function adicionaCor() {
     let paleta = document.getElementsByClassName('color');
@@ -32,31 +34,67 @@ function changeSelected(event) {
 
 
 
+let vqv = document.getElementById('generate-board');
+vqv.addEventListener('click', rodarQuadro);
 
+function rodarQuadro() {
+    console.log(size);
+    console.log(size.value);
+    console.log(ajusteSize());
+    // console.log(removequadro())
+    removeQuadro();
+    alerta();
+    createLines(ajusteSize());
+    createPixels(ajusteSize());
 
-let size = 5
+}
 
-function createLines() {
+function removeQuadro() {
+    let quadro = document.getElementById('pixel-board')
+    // return quadro.childNodes
+    for (let i = quadro.childNodes.length - 1; i >= 0; i -= 1) {
+        let currentChildren = quadro.childNodes[i];
+        currentChildren.remove();
+    }
+
+}
+
+function alerta() {
+    if (size.value < 5 || size.value > 50 || size.value == '') {
+        return alert('Board inválido!');
+    }
+}
+
+function ajusteSize() {
+    if (size.value > 50) {
+        return size.value = 50
+    } else if (size.value < 5 && size.value >0) {
+        return size.value = 5
+    } return size.value
+}
+
+createLines(5);
+createPixels(5);
+
+function createLines(x) {
     let board = document.querySelector('#pixel-board')
-    for (i = 1; i <= size; i += 1) {
+    for (i = 1; i <= x; i += 1) {
         let line = document.createElement('section');
         board.appendChild(line);
         line.className = 'lines'
     }
 }
-createLines()
 
-function createPixels() {
+function createPixels(x) {
     let lines = document.getElementsByClassName('lines')
     for (i = 0; i < lines.length; i += 1) {
-        for (a = 1; a <= size; a += 1) {
+        for (a = 1; a <= x; a += 1) {
             let pix = document.createElement('div');
             lines[i].appendChild(pix)
             pix.className = 'pixel'
         }
     }
 }
-createPixels()
 
 
 
@@ -70,16 +108,16 @@ createPixels()
 // }
 
 // function pintarPixel() {
-//     // let corSelecionada = document.querySelector('.selected');
-//     // let pixel = document.querySelector('.pixel');
-//     // console.log(pixel.className)
-//     // console.log(corSelecionada.className)
-//     // let x = corSelecionada.classList.contains('black')
-//     // console.log(x)
-//     // pixel.addEventListener('click', console.log(event.target))
-//     // if(corSelecionada.classList.contains('black')) {
-//     //     pixel.style.backgroundColor = 'red'
-//     // }
+// let corSelecionada = document.querySelector('.selected');
+// let pixel = document.querySelector('.pixel');
+// console.log(pixel.className)
+// console.log(corSelecionada.className)
+// let x = corSelecionada.classList.contains('black')
+// console.log(x)
+// pixel.addEventListener('click', console.log(event.target))
+// if(corSelecionada.classList.contains('black')) {
+//     pixel.style.backgroundColor = 'red'
+// }
 
 // }
 // pintarPixel()
@@ -89,19 +127,17 @@ createPixels()
 //QUE RETORNAM AS INFORMAÇÕES DE ESTILO E APOS BACKGROUND COLOR RESPECTIVAMENTE
 // AOPÓS ELE AIDICONOU UM EVENTLISTENER EM TODO DOCUMENTO, MAS UTILIZA UM IF PARA FAZER ALTERAÇÕES APENAS NOS QUE POSSUEM A CLASSE PIXEL
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     let selected = document.querySelector('.selected');
     let styleSelected = window.getComputedStyle(selected);
     let styleBackground = styleSelected.getPropertyValue('background-color');
 
-    if(event.target.classList.contains('pixel')) {
+    if (event.target.classList.contains('pixel')) {
         event.target.style.backgroundColor = styleBackground
     }
 
 
 })
-
-
 
 
 
@@ -116,3 +152,5 @@ function apagar() {
     })
 }
 apagar()
+
+
