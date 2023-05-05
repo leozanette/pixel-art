@@ -5,30 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Paleta de Cores</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1 id="title">Paleta de Cores</h1>
-    </header>
-    <section>
-        <ul id="color-palette">
-            <li class="color selected"></li>
-            <li class="color"></li>
-            <li class="color"></li>
-            <li class="color"></li>
-        </ul>
-    </section>
-    <section>
-        <button id="clear-board">Limpar</button>
-        <Input type="number" max="50" min="1" id="board-size"></Input>
-        <button id="generate-board">VQV</button>
-    </section>
-    
-    <section id="pixel-board">
-    </section>
+    <div class="container">
+
+        <header>
+            <h1 id="title">Paleta de Cores</h1>
+        </header>
+        <section>
+            <ul id="color-palette">
+                <li class="color selected"></li>
+                <li class="color"></li>
+                <li class="color"></li>
+                <li class="color"></li>
+            </ul>
+        </section>
+        <section>
+            <button id="clear-board">Limpar</button>
+            <Input type="number" max="50" min="1" id="board-size"></Input>
+            <button id="generate-board">VQV</button>
+        </section>
+        
+        <section id="pixel-board">
+        </section>
+    </div>
 
 
     <script src="script.js"></script>
